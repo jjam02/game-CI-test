@@ -46,7 +46,7 @@ jobs:
       - name: Download WebGL artifacts
         uses: actions/download-artifact@v3
         with:
-          name: WEBGL build # Name of the artifact to download
+          name: WEBGL # Name of the artifact to download
           path: webgl_build # Destination path to download the artifact
 
       # Unzip WebGL artifacts
