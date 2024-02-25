@@ -48,6 +48,8 @@ jobs:
         with:
           name: WEBGL # Name of the artifact to download
           path: webgl_build # Destination path to download the artifact
+      - name: List contents of webgl_build directory
+        run: ls webgl_build
 
       # Unzip WebGL artifacts
       - name: Unzip WebGL artifacts
