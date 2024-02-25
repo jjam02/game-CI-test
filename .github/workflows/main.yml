@@ -50,7 +50,7 @@ jobs:
       - name: Extract WebGL artifacts
         run: |
           mkdir webgl_build
-          unzip -q WEBGL/*.zip -d webgl_build
+          unzip -q build/WEBGL/*.zip -d webgl_build
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
