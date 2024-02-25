@@ -42,16 +42,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build_webgl] # Ensure build_webgl job completes before deploying
     steps:
-      # Checkout repository to access artifacts
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      # Download WebGL artifacts
+      - name: Download WebGL artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: WEBGL build # Name of the artifact to download
+          path: webgl_build # Destination path to download the artifact
 
-      # Extract WebGL artifacts
-      - name: Extract WebGL artifacts
-        run: |
-          ls
-          mkdir webgl_build
-          unzip -q build/WEBGL/*.zip -d webgl_build
+      # Unzip WebGL artifacts
+      - name: Unzip WebGL artifacts
+        run: unzip -q webgl_build/*.zip -d webgl_build
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
