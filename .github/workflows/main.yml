@@ -56,10 +56,6 @@ jobs:
           cd WEBGL
           ls
 
-      # Unzip WebGL artifacts
-      - name: Unzip WebGL artifacts
-        run: unzip -q webgl_build/*.zip -d webgl_build
-
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
@@ -67,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           BRANCH: gh-pages # Branch to deploy to
-          FOLDER: webgl_build # Folder containing the extracted WebGL files
+          FOLDER: webgl_build/WebGL # Folder containing the extracted WebGL files
 
   build_windows:
     name: Build Windows
