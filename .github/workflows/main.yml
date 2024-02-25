@@ -49,6 +49,7 @@ jobs:
       # Extract WebGL artifacts
       - name: Extract WebGL artifacts
         run: |
+          ls
           mkdir webgl_build
           unzip -q build/WEBGL/*.zip -d webgl_build
 
