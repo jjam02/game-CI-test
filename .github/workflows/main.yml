@@ -68,6 +68,7 @@ jobs:
         with:
           BRANCH: gh-pages # Branch to deploy to test
           FOLDER: webgl_build/WebGL # Folder containing the extracted WebGL files
+          VERBOSE: true
 
   build_windows:
     name: Build Windows
