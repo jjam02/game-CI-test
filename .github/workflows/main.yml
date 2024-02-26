@@ -60,12 +60,6 @@ jobs:
           name: WEBGL # Name of the artifact to download
           path: webgl_build # Destination path to download the artifact
 
-      # Set Git user configuration
-      - name: Set Git user configuration
-        run: |
-          git config --global user.email "jony02@icloud.com"
-          git config --global user.name "jjam02"
-
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
@@ -129,8 +123,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
-          tag_name: ${{ steps.random_tag.outputs.tag_name }}
-          release_name: Release ${{ steps.random_tag.outputs.tag_name }}
+          tag_name: v1.0.1 # Set the tag name for the release
+          release_name: Release 1.0.1 # Set the release name
           body: |
             Latest Windows build of permanence break
           draft: false
