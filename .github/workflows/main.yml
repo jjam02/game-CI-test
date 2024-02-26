@@ -11,6 +11,7 @@ on:
 permissions:
   pages: write # to deploy to Pages
   id-token: write
+  contents: write
 
 jobs:
   build_webgl:
