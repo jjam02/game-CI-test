@@ -1,6 +1,12 @@
-name: Actions 😎
+name: Build Unity Projects and Deploy them
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build_webgl:
