@@ -60,15 +60,11 @@ jobs:
           name: WEBGL # Name of the artifact to download
           path: webgl_build # Destination path to download the artifact
 
-      - name: Deploy to GitHub Pages
+      # Set Git user configuration
+      - name: Set Git user configuration
         run: |
-          echo "Deploying to GitHub Pages..."
-          echo "Current directory: $(pwd)"
-          echo "Contents of the deployment folder:"
-          ls -l webgl_build/WebGL  # Assuming 'webgl_build/WebGL' is the folder you're deploying
-          git config --global --list  # Print Git configuration
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          git config --global user.email "jony02@icloud.com"
+          git config --global user.name "jjam02"
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -120,14 +116,21 @@ jobs:
     needs: [build_windows]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only create release on main branch pushes
     steps:
+      - name: Generate Random Tag Name
+        id: random_tag
+        run: |
+          # Generate a random string for the tag name
+          random_tag=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+          echo "::set-output name=tag_name::${random_tag}"
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
-          tag_name: v1.0.0 # Set the tag name for the release
-          release_name: Release 1.0.0 # Set the release name
+          tag_name: ${{ steps.random_tag.outputs.tag_name }}
+          release_name: Release ${{ steps.random_tag.outputs.tag_name }}
           body: |
             Latest Windows build of permanence break
           draft: false
