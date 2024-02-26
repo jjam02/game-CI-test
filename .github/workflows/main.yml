@@ -110,6 +110,13 @@ jobs:
     needs: [build_windows]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only create release on main branch pushes
     steps:
+      # Download WebGL artifacts
+      - name: Download Windows artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: Windows_Build # Name of the artifact to download
+          path: Windows # Destination path to download the artifact
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
