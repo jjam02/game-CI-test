@@ -68,13 +68,13 @@ jobs:
           ls -l webgl_build/WebGL  # Assuming 'webgl_build/WebGL' is the folder you're deploying
           git config --global --list  # Print Git configuration
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           BRANCH: gh-pages # Branch to deploy to test
           FOLDER: webgl_build/WebGL # Folder containing the extracted WebGL files
@@ -124,7 +124,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           tag_name: v1.0.0 # Set the tag name for the release
           release_name: Release 1.0.0 # Set the release name
@@ -142,7 +142,7 @@ jobs:
       - name: Attach Windows Build to Release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/ # Path to the Windows build artifact
