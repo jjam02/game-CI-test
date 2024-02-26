@@ -1,6 +1,12 @@
-name: Actions 😎
+name: Build Unity Projects and Deploy them
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build_webgl:
@@ -55,7 +61,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          BRANCH: gh-pages # Branch to deploy to
+          BRANCH: gh-pages # Branch to deploy to test
           FOLDER: webgl_build/WebGL # Folder containing the extracted WebGL files
 
   build_windows:
