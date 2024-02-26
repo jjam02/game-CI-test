@@ -110,13 +110,6 @@ jobs:
     needs: [build_windows]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only create release on main branch pushes
     steps:
-      - name: Generate Random Tag Name
-        id: random_tag
-        run: |
-          # Generate a random string for the tag name
-          random_tag=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
-          echo "::set-output name=tag_name::${random_tag}"
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
