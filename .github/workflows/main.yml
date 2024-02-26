@@ -9,7 +9,8 @@ on:
       - main
 
 permissions:
-  contents: write
+  pages: write # to deploy to Pages
+  id-token: write
 
 jobs:
   build_webgl:
