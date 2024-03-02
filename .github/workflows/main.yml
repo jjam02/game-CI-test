@@ -121,6 +121,10 @@ jobs:
         with:
           name: Windows_Build # Name of the artifact to download\
 
+      - name: List contents of build directory
+        run: |
+          ls -l Windows_Build
+
       - name: Zip up Windows Build
         uses: thedoctor0/zip-release@master
         with:
