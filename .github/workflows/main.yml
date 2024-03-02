@@ -123,7 +123,8 @@ jobs:
 
       - name: List contents of build directory
         run: |
-          ls -l Windows_Build
+          pwd
+          ls
 
       - name: Zip up Windows Build
         uses: thedoctor0/zip-release@master
