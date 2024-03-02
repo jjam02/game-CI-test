@@ -129,7 +129,8 @@ jobs:
       - name: Zip up Windows Build
         uses: thedoctor0/zip-release@master
         with:
-          filename: Windows_Build.zip # Name of the artifact to download
+          filename: Windows_Build.zip
+          exclusions: "*.git* /*node_modules/* .editorconfig /*Assets/* /*Packages/* /*ProjectSettings/* .md"
 
       - name: Create Release
         id: create_release
